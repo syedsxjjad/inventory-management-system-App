@@ -1,61 +1,61 @@
-
-
 import React, { useState } from "react";
 import Button from "./Button";
-
+import Loading from "./Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface AddImageProps {
-  handleImageUrl: (url:string) =>void;
-};
+  handleImageUrl: (url: string) => void;
+}
 
-export default function AddImage({handleImageUrl}:AddImageProps) {
+export default function AddImage({ handleImageUrl }: AddImageProps) {
   const [file, setFile] = useState(null);
- const[loading,setLoading]=useState(false);
-//  console.log({file});
- 
+  const [loading, setLoading] = useState(false);
+  //  console.log({file});
 
-//  const Imagehandler=(e:any)=>{
-//   const img=e.target.file[0];
-//   console.log(img);
-  
-//  }
-   const uploadImage= async (e:any)=>{
-     e.preventDefault()
-     console.log(file);
-     
-   const files=e.target.files
-   const data=new FormData()
-   if (file) {
-     
-  data.append('file',file)
-   data.append('upload_preset','InventoryManagement')
-   setLoading(true)
+  //  const Imagehandler=(e:any)=>{
+  //   const img=e.target.file[0];
+  //   console.log(img);
 
-   const res= await fetch("https://api.cloudinary.com/v1_1/dfefpurpu/image/upload",
-  
-   {
-     method:'POST',
-     body:data
-     
-   })
-   const responseJson = await res.json()
-   console.log(responseJson);
-   
-    handleImageUrl(responseJson.url)
-   }
-   }
-    
+  //  }
+  const uploadImage = async (e: any) => {
+    e.preventDefault();
+    //  console.log(file);
+    setLoading(true)
 
-   const Imagehandler=(e:any)=>{
-    const pic=e.target.files[0];
-    setFile(pic)
-  }
+    const files = e.target.files;
+    const data = new FormData();
+    if (file) {
+      data.append("file", file);
+      data.append("upload_preset", "InventoryManagement");
+      setLoading(true);
+
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dfefpurpu/image/upload",
+
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const responseJson = await res.json();
+      console.log(responseJson);
+
+      handleImageUrl(responseJson.url);
+      setLoading(false)
+      e.target.file = null;
+    }
+  };
   
-   
+
+  const Imagehandler = (e: any) => {
+    const pic = e.target.files[0];
+    setFile(pic);
+  };
+
   return (
     <>
-
-{/* <div className="flex w-full  items-center mt-5 bg-grey-lighter">
+      {/* <div className="flex w-full  items-center mt-5 bg-grey-lighter">
     <label className="w-60 flex flex-col items-center px-4 py-4 bg-white text-blue rounded-lg shadow-lg 
               tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-black">
         <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -80,30 +80,43 @@ export default function AddImage({handleImageUrl}:AddImageProps) {
          transition
          ease-in-out
          m-0"
-           >
-      <input
-        className=""
-        id="f02"
-        type="file"
-        placeholder="Add profile picture"
-        multiple
-        onChange={Imagehandler}
-      />
-      
-        <Button
-                    title={"Upload"}
-                    onClick={uploadImage}
-                  />
+      >
+        <input
+          className=""
+          id="f02"
+          type="file"
+          placeholder="Add profile picture"
+          multiple
+          onChange={Imagehandler}
+        />
+         {!loading?(
 
-      {/* <div>
+           <Button title={"Upload"} onClick={uploadImage} />
+           ):(
+             <Loading/>
+            
+           )
+           
+         }
+
+        {/* <div>
         <label className="selpic" htmlFor="f02">
           Select {image.length || "Image"}
         </label>
       </div> */}
-
-    </div>
+      </div>
+       
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }
-
-

@@ -5,7 +5,7 @@ import MainRoutes from "./routes/MainRoutes";
 import ViewProduct from "./screen/Products/ViewProduct";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import ModalProduct from "./screen/Products/ModalProduct";
-import { UsersData } from "./contex/ContextProvider";
+import { UsersData } from "./context/ContextProvider";
 
 function App() {
   

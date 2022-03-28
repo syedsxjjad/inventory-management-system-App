@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyCLoKjdtJTl_4qjbX8nhiqG-1Hm0ZsCIW4",
   authDomain: "inventory-management-e743b.firebaseapp.com",

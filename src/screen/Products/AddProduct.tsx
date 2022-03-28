@@ -38,38 +38,57 @@ const AddProduct = () => {
   const AddPrducts = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-  //  if (email == null || email == "") {
-  //     toast.error("Please Enter Email");
-  //     setLoading(false);
-  //   } else if (password == null || password == "") {
-  //     toast.error("Please Enter Password");
-  //     setLoading(false);
-  //   }
 
-    try {
-      const docRef = await addDoc(collection(db, "Inventory-Management"), {
-        ...addProducts,
-      });
-      console.log(docRef);
-    } catch (error) {
-      console.log(error);
+    if (addProducts.ProductId === null || addProducts.ProductId === "") {
+      toast.error("Please Enter Id");
+      setLoading(false);
+    } else if (addProducts.name === null || addProducts.name === "") {
+      toast.error("Please Enter Name");
+      setLoading(false);
+    } else if (addProducts.Price === null || addProducts.Price === "") {
+      toast.error("Please Enter Price");
+      setLoading(false);
+    } else if (
+      addProducts.Description === null ||
+      addProducts.Description === ""
+    ) {
+      toast.error("Please Enter Description");
+      setLoading(false);
+    } else if (addProducts.quantity === null || addProducts.quantity === "") {
+      toast.error("Please Enter Quantity");
+      setLoading(false);
+    } else if (addProducts.imageUrl === null || addProducts.imageUrl === "") {
+      toast.error("Please Enter Image");
+      setLoading(false);
+    } else {
+      try {
+        const docRef = await addDoc(collection(db, "Inventory-Management"), {
+          ...addProducts,
+        });
+        setLoading(false);
+        console.log(docRef);
+        setAddProducts({
+          ProductId: "",
+          name: "",
+          Price: "",
+          Description: "",
+          quantity: "",
+          imageUrl: "",
+        });
+        
+        toast.success("Create Successfully");
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+        toast.error("Some Thing Wrong");
+      }
     }
-
-    setAddProducts((prev) => ({
-      ...prev,
-      ProductId: "",
-      name: "",
-      Price: "",
-      Description: "",
-      quantity: "",
-      imageUrl: "",
-    }));
   };
+
   return (
     <>
       <div className="w-2/3 h-auto mt-20 ml-96 ">
-          <div className="w-5/6 ml-40  flex ">
-            
+        <div className="w-5/6 ml-40  flex ">
           <form>
             <div className="">
               <div
@@ -87,7 +106,7 @@ const AddProduct = () => {
             </div>
 
             <div className="">
-              <div 
+              <div
                 className=" w-1/2 ml-1 text-sm font-bold text-white
                               tracking-wide mt-6"
               >
@@ -142,11 +161,7 @@ const AddProduct = () => {
             <div className="mt-10">
               {!loading ? (
                 <Button
-                  // disable={
-                  //   !email||
-                  //   !password
-                  // }
-                   style="bg-red-800"
+                  style="bg-red-800"
                   title={"Add Product"}
                   onClick={AddPrducts}
                 />
@@ -157,8 +172,19 @@ const AddProduct = () => {
           </form>
           {/* <div className="w-96 h-72 ml-28 mt-10 bg-red-800"></div> */}
         </div>
-      
-        </div>
+      </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

@@ -79,7 +79,7 @@ function Sidebar() {
                                hover:text-black rounded-l-lg  "
                     to="/AddProduct"
                   >
-                    <span className="mx-4 font-medium">Sell</span>
+                    <span className="mx-4 font-medium">Main Stock</span>
                   </Link>
                 </li>
 

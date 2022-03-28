@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserContext } from '../contex/Context' 
+import { UserContext } from './Context' 
 
 export const UsersData: React.FC = (props): React.ReactElement => {
   const [productView, setProductView] = React.useState([]);
