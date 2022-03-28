@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import MainRoutes from "./routes/MainRoutes";
+import ViewProduct from "./screen/Products/ViewProduct";
+import ProtectedRoutes from "./routes/ProtectedRoutes";
+import ModalProduct from "./screen/Products/ModalProduct";
+import { UsersData } from "./contex/ContextProvider";
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <UsersData>
+      <MainRoutes/>
+    </UsersData>
+    </>
   );
 }
 
