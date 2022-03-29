@@ -10,7 +10,6 @@ import {
 import { db } from "../../Firebase/Firebase";
 import { Link } from "react-router-dom";
 import Loading from "../../component/Loading";
-import EditProducts from "./EditProducts";
 import Button from "../../component/Button";
 import { async } from "@firebase/util";
 import { UserContext } from "../../context/Context";
@@ -24,17 +23,19 @@ import { UserContext } from "../../context/Context";
 //     imageUrl: string,
 // };
 
-const ViewProduct = () => {
+const Stocks = () => {
   const { productView, setProductView } = useContext(UserContext);
   //   console.log(productView);
 
-  //Firebase Product Delete
-  const ProductDelete = async (id: string) => {
-    await deleteDoc(doc(db, "Inventory-Management", `${id}`));
-  };
+ const Increament=()=>{
 
+ }
+
+ const Decreament=()=>{
+
+}
   return (
-    <>
+    <div className="ml-96 mt-16">
       {productView.length ? (
         productView.map((product: any, ind: number) => {
           console.log(product);
@@ -53,9 +54,7 @@ const ViewProduct = () => {
                     <th scope="col" className="px-6 py-3">
                       Product Name
                     </th>
-                    <th scope="col" className="px-6 py-3">
-                      Price
-                    </th>
+                    
                     <th scope="col" className="px-6 py-3">
                       Quantity
                     </th>
@@ -67,7 +66,7 @@ const ViewProduct = () => {
                 <tbody>
                   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td className=" p-4">
-                      {/* {<img className="w-24 h-20" src={product.imageUrl} />} */}
+                      
                       <a
                         href={product.imageUrl}
                         key={ind}
@@ -84,21 +83,21 @@ const ViewProduct = () => {
                       {product.ProductId}
                     </th>
                     <td className="px-12 py-4">{product.name}</td>
-                    <td className="px-6 py-4">{product.Price}</td>
+                
                     <td className="px-6 py-4">{product.quantity}</td>
                     <td className="px-0  py-4 text-right">
                       
                       <Button
                         style="w-20"
-                        title="Edit"
-                        onClick={()=>ProductDelete(product.id)}
+                        title="+"
+                        onClick={Increament}
                       />
                     </td>
                     <td className="px-3 py-4 text-right">
                       <Button
                         style="w-20 hover:bg-red-600"
-                        title="Delete"
-                        onClick={() => ProductDelete(product.id)}
+                        title="-"
+                        onClick={Decreament}
                       />
                     </td>
                   </tr>
@@ -110,8 +109,8 @@ const ViewProduct = () => {
       ) : (
         <Loading style=" w-32 h-32 ml-96 mt-32 " />
       )}
-    </>
+    </div>
   );
 };
 
-export default ViewProduct;
+export default Stocks;

@@ -9,6 +9,7 @@ import AddProduct from "../screen/Products/AddProduct";
 import ViewProduct from "../screen/Products/ViewProduct";
 import Products from "../screen/Products/Products";
 import ModalProduct from "../screen/Products/ModalProduct";
+import Stocks from "../screen/Stock/Stocks";
 
 // const Invoices=()=> {
 //   return (
@@ -30,6 +31,7 @@ const ProtectedRoutes = () => {
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/Login" element={<Logout />}></Route>
         <Route path="/ModalProduct" element={<ModalProduct/>}/>
+        <Route path="/Stocks" element={<Stocks/>}/>
       </Routes>
     </div>
   );

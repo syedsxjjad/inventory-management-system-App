@@ -77,7 +77,7 @@ function Sidebar() {
                                focus:bg-white focus:text-black flex items- w-64 
                                 -ml-3 py-3 mt-6 text-white bg-slate-700 
                                hover:text-black rounded-l-lg  "
-                    to="/AddProduct"
+                    to="/Stocks"
                   >
                     <span className="mx-4 font-medium">Main Stock</span>
                   </Link>
