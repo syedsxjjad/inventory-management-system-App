@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ViewProduct from "./ViewProduct";
 import AddProduct from "./AddProduct";
@@ -7,10 +7,13 @@ import DropDown from "../../component/DropDown";
 
 
 const Products = () => {
+  const [serchProduct,setSearchProduct]=useState<any>("")
+  console.log(serchProduct,"searchProduct");
+  
   return (
     <>
    
-   {/* <div className=" h-auto"> */}
+
      <div className="ml-96 flex justify-between  ">
       <div
         className=" h-36 w-[70rem] fixed bg-white  py-16 mt-12"
@@ -22,15 +25,15 @@ const Products = () => {
         </Link>
         </div>
         <div className="absolute  ml-[52rem]  mt-24 ">
-      <DropDown />
+      <DropDown setSearchProduct={setSearchProduct}/>
    
       </div>
       </div>
         <div className=" w-96 h-screen mt-48 mr-60 ">
-        <ViewProduct /> 
+        <ViewProduct productName={serchProduct.name} /> 
           </div> 
      
-    {/* </div> */}
+  
     
     </>
   );

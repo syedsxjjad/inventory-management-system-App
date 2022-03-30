@@ -20,6 +20,7 @@ const AddProduct = () => {
     quantity: "",
     imageUrl: "",
   });
+  
 
   const handleImageUrl = (imageUrl: string) => {
     setAddProducts((prev) => ({

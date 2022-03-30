@@ -30,8 +30,9 @@ const ProtectedRoutes = () => {
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/Login" element={<Logout />}></Route>
-        <Route path="/ModalProduct" element={<ModalProduct/>}/>
+        {/* <Route path="/ModalProduct" element={<ModalProduct/>}/> */}
         <Route path="/Stocks" element={<Stocks/>}/>
+        {/* <Route path="/ModalProduct" element={<ModalProduct/>}/> */}
       </Routes>
     </div>
   );

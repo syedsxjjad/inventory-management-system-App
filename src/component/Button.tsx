@@ -11,10 +11,11 @@ const Button = ({ title, onClick,style=" " }: ButtonProps) => {
   return (
     <>
       <button
+      type="button"
         className={`bg-slate-700 text-white p-4 w-36 
                     rounded-md tracking-wide font-semibold
                     font-display focus:outline-none shadow-lg 
-                    focus:shadow-outline hover:bg-slate-900 ${style}`}
+                    focus:shadow-outline hover:bg-red-900 ${style}`}
             
         
         onClick={onClick}

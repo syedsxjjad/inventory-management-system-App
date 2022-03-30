@@ -14,17 +14,14 @@ import EditProducts from "./EditProducts";
 import Button from "../../component/Button";
 import { async } from "@firebase/util";
 import { UserContext } from "../../context/Context";
+import ModalProduct from "./ModalProduct";
 
-// interface ViewProductProps {
-//     ProductId: Number,
-//     name: string,
-//     Price: Number,
-//     Description: string,
-//     quantity: Number,
-//     imageUrl: string,
-// };
 
-const ViewProduct = () => {
+
+const ViewProduct = ({productName}:any) => {
+console.log(productName,"SearchProduct");
+
+  const[searchTerm,setSearchTerm]=useState("");
   const { productView, setProductView } = useContext(UserContext);
   //   console.log(productView);
 
@@ -36,9 +33,12 @@ const ViewProduct = () => {
   return (
     <>
       {productView.length ? (
-        productView.map((product: any, ind: number) => {
-          console.log(product);
-
+        productView
+        
+        .filter((val:any) => val.name ?  val.name === productName : val.name )
+        .map((product: any, ind: number) => {
+          // console.log(product, "product");
+          
           return (
             <div key={ind} className="w-fit h-auto bg-slate-900   mt-5">
               <table className="w-[70rem] h-auto text-sm text-right text-gray-500 dark:text-gray-400">
@@ -65,7 +65,7 @@ const ViewProduct = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
                     <td className=" p-4">
                       {/* {<img className="w-24 h-20" src={product.imageUrl} />} */}
                       <a
@@ -87,16 +87,13 @@ const ViewProduct = () => {
                     <td className="px-6 py-4">{product.Price}</td>
                     <td className="px-6 py-4">{product.quantity}</td>
                     <td className="px-0  py-4 text-right">
-                      
-                      <Button
-                        style="w-20"
-                        title="Edit"
-                        onClick={()=>ProductDelete(product.id)}
-                      />
+                      <ModalProduct id={product.id}/>
+
                     </td>
                     <td className="px-3 py-4 text-right">
                       <Button
-                        style="w-20 hover:bg-red-600"
+                        style="bg-slate-600 w-auto text-black active:bg-blue-500 
+                        font-bold px-6 py-3 rounded shadow  hover:shadow-lg hover:bg-red-700 outline-none focus:outline-none mr-1 mb-1"
                         title="Delete"
                         onClick={() => ProductDelete(product.id)}
                       />

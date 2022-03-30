@@ -13,6 +13,7 @@ import {
 
 export const UsersData: React.FC = (props): React.ReactElement => {
   const [productView, setProductView] = React.useState([]);
+  console.log("productView", productView)
   useEffect(() => {
     onSnapshot(collection(db, "Inventory-Management"), (snapshoot:any) => {
       setProductView(
