@@ -9,7 +9,7 @@ import Loading from "../../component/Loading";
 import TextArea from "../../component/TextArea";
 import { UserContext } from "../../context/Context";
 import { db } from "../../Firebase/Firebase";
-import {} from "firebase/firestore"
+import {} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 interface ViewProductProps {
@@ -21,7 +21,7 @@ const ModalProduct = ({ id }: ViewProductProps) => {
   const { productView, setProductView } = useContext(UserContext);
 
   const [addProducts, setAddProducts] = useState({
-    ProductId: "",
+
     name: "",
     Price: "",
     Description: "",
@@ -36,27 +36,25 @@ const ModalProduct = ({ id }: ViewProductProps) => {
   }, [id]);
 
   const UpdatePrducts = async (e: any) => {
-    setLoading(true)
-  try{
+    setLoading(true);
+    try {
+      const washingtonRef = doc(db, "Inventory-Management", `${id}`);
+      setLoading(false);
+      await updateDoc(washingtonRef, {
+    
+        name: addProducts.name,
+        Price: addProducts.Price,
+        Description: addProducts.Description,
+        quantity: addProducts.quantity,
+      });
 
-    const washingtonRef = doc(db, "Inventory-Management", `${id}`);
-    setLoading(false)
-    await updateDoc(washingtonRef, {
-      ProductId: addProducts.ProductId,
-      name: addProducts.name,
-      Price: addProducts.Price,
-      Description: addProducts.Description,
-      quantity: addProducts.quantity,
-    });
-  
-    toast.success("Update Successfully");
-    // navigate("/ViewProduct")
-  }
-  catch(error){
-   console.log(error);
-   setLoading(false);
-   toast.error("Some Thing Wrong");
-  }
+      toast.success("Update Successfully");
+    setShowModal(false)
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      toast.error("Some Thing Wrong");
+    }
   };
 
   // const handleImageUrl = (imageUrl: string) => {
@@ -91,7 +89,7 @@ const ModalProduct = ({ id }: ViewProductProps) => {
                 <div className="relative p-6 flex-auto">
                   <form className="bg-slate-200  shadow-md rounded mr-24  pt-6 pb-8 w-full">
                     <div className="w-auto px-56">
-                      <div className="">
+                      {/* <div className="">
                         <div
                           className="text-sm font-bold mr-52 text-black
                                tracking-wide mt-6"
@@ -104,7 +102,7 @@ const ModalProduct = ({ id }: ViewProductProps) => {
                           value={addProducts.ProductId}
                           onChange={handleChange("ProductId")}
                         />
-                      </div>
+                      </div> */}
 
                       <div className="">
                         <div
@@ -162,11 +160,11 @@ const ModalProduct = ({ id }: ViewProductProps) => {
                         {!loading ? (
                           <Button
                             style="bg-red-800 "
-                            title={"Update"}
+                            title={"btn"}
                             onClick={UpdatePrducts}
                           />
                         ) : (
-                          <Loading/>
+                          <Loading />
                         )}
                       </div>
                     </div>

@@ -8,7 +8,8 @@ import DropDown from "../../component/DropDown";
 
 const Products = () => {
   const [serchProduct,setSearchProduct]=useState<any>("")
-  console.log(serchProduct,"searchProduct");
+
+  // console.log(serchProduct,"searchProduct");
   
   return (
     <>
@@ -25,7 +26,7 @@ const Products = () => {
         </Link>
         </div>
         <div className="absolute  ml-[52rem]  mt-24 ">
-      <DropDown setSearchProduct={setSearchProduct}/>
+      {/* <DropDown setSearchProduct={setSearchProduct}/> */}
    
       </div>
       </div>

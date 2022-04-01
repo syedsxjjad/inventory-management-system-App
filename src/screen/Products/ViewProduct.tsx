@@ -12,30 +12,29 @@ import { Link } from "react-router-dom";
 import Loading from "../../component/Loading";
 import EditProducts from "./EditProducts";
 import Button from "../../component/Button";
-import { async } from "@firebase/util";
+
 import { UserContext } from "../../context/Context";
 import ModalProduct from "./ModalProduct";
 
 
 
 const ViewProduct = ({productName}:any) => {
-console.log(productName,"SearchProduct");
 
-  const[searchTerm,setSearchTerm]=useState("");
   const { productView, setProductView } = useContext(UserContext);
-  //   console.log(productView);
 
   //Firebase Product Delete
   const ProductDelete = async (id: string) => {
     await deleteDoc(doc(db, "Inventory-Management", `${id}`));
   };
 
+
+
   return (
     <>
       {productView.length ? (
         productView
         
-        .filter((val:any) => val.name ?  val.name === productName : val.name )
+        // .filter((val:any) => productName ?  val.name === productName : true )
         .map((product: any, ind: number) => {
           // console.log(product, "product");
           
@@ -47,9 +46,9 @@ console.log(productName,"SearchProduct");
                     <th scope="col" className="px-14">
                       Image
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    {/* <th scope="col" className="px-6 py-3">
                       Product Id
-                    </th>
+                    </th> */}
                     <th scope="col" className="px-6 py-3">
                       Product Name
                     </th>
@@ -77,12 +76,12 @@ console.log(productName,"SearchProduct");
                         <img className="w-24 h-20" src={product.imageUrl} />
                       </a>
                     </td>
-                    <th
+                    {/* <th
                       scope="row"
                       className="px-14 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                     >
                       {product.ProductId}
-                    </th>
+                    </th> */}
                     <td className="px-12 py-4">{product.name}</td>
                     <td className="px-6 py-4">{product.Price}</td>
                     <td className="px-6 py-4">{product.quantity}</td>
@@ -105,7 +104,9 @@ console.log(productName,"SearchProduct");
           );
         })
       ) : (
-        <Loading style=" w-32 h-32 ml-96 mt-32 " />
+      
+        <Loading style=" w-32 h-32 ml-96 mt-32 "/>
+      
       )}
     </>
   );

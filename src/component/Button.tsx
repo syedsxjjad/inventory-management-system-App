@@ -4,10 +4,12 @@ import React from "react";
 interface ButtonProps {
   title?: string;
   onClick?: any;
-  style?:string
+  style?:string;
+  disabled?:boolean;
+  
 }
 
-const Button = ({ title, onClick,style=" " }: ButtonProps) => {
+const Button = ({ title, onClick,style=" ",disabled }: ButtonProps) => {
   return (
     <>
       <button
@@ -17,7 +19,7 @@ const Button = ({ title, onClick,style=" " }: ButtonProps) => {
                     font-display focus:outline-none shadow-lg 
                     focus:shadow-outline hover:bg-red-900 ${style}`}
             
-        
+        disabled={disabled}
         onClick={onClick}
        
     

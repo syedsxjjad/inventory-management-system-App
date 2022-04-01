@@ -9,18 +9,20 @@ import Sidebar from "../../component/Sidebar";
 import TextArea from "../../component/TextArea";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(false);
   const [addProducts, setAddProducts] = useState({
-    ProductId: "",
+  
     name: "",
     Price: "",
     Description: "",
     quantity: "",
     imageUrl: "",
   });
-  
+
+  let navigate=useNavigate()
 
   const handleImageUrl = (imageUrl: string) => {
     setAddProducts((prev) => ({
@@ -40,10 +42,7 @@ const AddProduct = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (addProducts.ProductId === null || addProducts.ProductId === "") {
-      toast.error("Please Enter Id");
-      setLoading(false);
-    } else if (addProducts.name === null || addProducts.name === "") {
+     if (addProducts.name === null || addProducts.name === "") {
       toast.error("Please Enter Name");
       setLoading(false);
     } else if (addProducts.Price === null || addProducts.Price === "") {
@@ -69,15 +68,16 @@ const AddProduct = () => {
         setLoading(false);
         console.log(docRef);
         setAddProducts({
-          ProductId: "",
           name: "",
           Price: "",
           Description: "",
           quantity: "",
           imageUrl: "",
         });
-        
+
         toast.success("Create Successfully");
+        navigate("/Products")
+        
       } catch (error) {
         setLoading(false);
         console.log(error);
@@ -91,7 +91,7 @@ const AddProduct = () => {
       <div className="w-2/3 h-auto mt-20 ml-96 ">
         <div className="w-5/6 ml-40  flex ">
           <form>
-            <div className="">
+            {/* <div className="">
               <div
                 className=" w-1/2 mr-1 text-sm font-bold text-white
                                tracking-wide mt-6"
@@ -104,7 +104,7 @@ const AddProduct = () => {
                 value={addProducts.ProductId}
                 onChange={handleChange("ProductId")}
               />
-            </div>
+            </div> */}
 
             <div className="">
               <div

@@ -53,6 +53,7 @@ const DropDown = ({setSearchProduct}:any) => {
                                           focus:outline-none sm:text-sm"
               >
                 {productView.map((person: any, personIdx: any) => (
+                  
                   <Listbox.Option
                     key={personIdx}
                     className={({ active }) =>

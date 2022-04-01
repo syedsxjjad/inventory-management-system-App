@@ -3,6 +3,7 @@ import Button from "./Button";
 import Loading from "./Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 interface AddImageProps {
   handleImageUrl: (url: string) => void;
@@ -68,12 +69,14 @@ export default function AddImage({ handleImageUrl }: AddImageProps) {
       <div
         className=" block
         -40
-         mt-
-         px-3
+         mt-6
+         px-30
+         w-96
          py-1.5
          text-base
          font-normal
          text-gray-700
+      
          bg-white bg-clip-padding
          border border-solid border-gray-300
          rounded
@@ -90,12 +93,15 @@ export default function AddImage({ handleImageUrl }: AddImageProps) {
           onChange={Imagehandler}
         />
          {!loading?(
+           
 
-           <Button title={"Upload"} onClick={uploadImage} />
+             <Button title={"Upload"}onClick={uploadImage} style={"w-auto h-auto "} />
+            
            ):(
              <Loading/>
             
            )
+           
            
          }
 
