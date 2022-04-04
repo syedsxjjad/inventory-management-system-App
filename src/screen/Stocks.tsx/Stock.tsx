@@ -1,5 +1,5 @@
 import { async, validateCallback } from "@firebase/util";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -9,79 +9,83 @@ import { UserContext } from "../../context/Context";
 import { db } from "../../Firebase/Firebase";
 import Loading from "../../component/Loading";
 
-const Stock = () => {
-  const { quantity, setQuantity } = useContext(UserContext);
+interface ViewProductProps {
+  id?: string;
+}
 
+const Stock = ({ id }: ViewProductProps) => {
+  const { stockQuantity, setStockQuantity } = useContext(UserContext);
   const { storeName, setStoreName } = useContext(UserContext);
   const { productView, setProductView } = useContext(UserContext);
-  const { product, setProduct } = useContext(UserContext);
+  const { stockProduct, setStockProduct } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [findData, setFindData] = useState(null as any);
+
+  // console.log(findData, "finddata");
+  // console.log(product, "product");
 
   // console.log(productView,"Storename");
   // console.log(product,"Productname");
 
   // useEffect(() => {
-  //   if (productView) setProduct(productView?.id);
-  //     setQuantity(0);
+  //   if (productView) setProduct(productView?.[0]?.id);
+  //   setQuantity(0);
   // }, [productView]);
+  // console.log(product, "pro");
+  // console.log(productView, "proView");
 
-  useEffect(()=>{
-    console.log(1111);
+  useEffect(() => {
     productView?.forEach((val: any) => {
-      if(val.name === product){
-        setFindData(val)
+      if (val.id === stockProduct) {
+        setFindData(val);
       }
     });
-  },[product])
+  }, [stockProduct]);
 
   const AddStock = async (e: any) => {
     e.preventDefault();
     setLoading(true);
 
-
-    console.log(typeof findData?.quantity);
-    console.log(typeof quantity);
-
-    if (Number(quantity) > Number(findData?.quantity)) {
+    if (Number(stockQuantity) > Number(findData?.quantity)) {
       alert("Quantity is not available");
+      console.log("no");
       setLoading(false);
     } else {
       try {
         const docRef = await addDoc(
           collection(db, "Inventory-Management-Stock"),
           {
-            quantity,
-            product,
+            stockQuantity,
+            stockProduct,
             storeName,
           }
         );
-        // console.log(docRef)
+        console.log(docRef);
         toast.success("Create Successfully");
+        console.log({ productView });
+        productView.forEach(async (v: any) => {
+          if (v.id === stockProduct) {
+            console.log(v, "bbvv");
 
-        // setProductView((pre: any) => {
-        //   return pre?.map((val: any) => {
-        //     if (val.id === product)
-        //       return {
-        //         ...val,
-        //         quantity: String(Number(val.quantity) - Number(quantity)),
-        //       };
-        //     return val;
-        //   });
-        // });
+            v.quantity = v.quantity - stockQuantity;
 
+            const washingtonRef = doc(db, "Inventory-Management", `${v.id}`);
+            await updateDoc(washingtonRef, {
+              quantity: v.quantity,
+            });
+          }
+        });
         setLoading(false);
         // console.log(docRef);
       } catch (error) {
         toast.error("Some Thing Wrong");
         console.log(error);
-
         setLoading(false);
       }
     }
 
-    // setQuantity("");
-    setProduct("");
+    setStockQuantity("");
+    setStockProduct("");
     setStoreName("");
   };
 

@@ -12,11 +12,8 @@ import Stock from "../screen/Stocks.tsx/Stock";
 
 import MainStock from "../screen/Stocks.tsx/MainStock";
 import ViewStock from "../screen/Stocks.tsx/ViewStock";
-
-
-
-
-
+import MainSales from "../screen/Sales/MainSales";
+import Sales from "../screen/Sales/Sales";
 
 // const Invoices=()=> {
 //   return (
@@ -32,18 +29,18 @@ const ProtectedRoutes = () => {
     <div className="flex flex-row">
       <Sidebar />
       <Routes>
-      <Route path="*" element={<AdminDashboard/>}/>
-        <Route path="/Products" element={<Products/>}/>
-        <Route path="/ViewProduct" element={<ViewProduct/>}/>
+        <Route path="*" element={<AdminDashboard />} />
+        <Route path="/Products" element={<Products />} />
+        <Route path="/ViewProduct" element={<ViewProduct />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/AddProduct" element={<AddProduct />} />
-        <Route path="/Login" element={<Logout />}/>
-        <Route path="/Stock" element={<Stock/>}/>
-       
-        <Route path="/MainStock" element={<MainStock/>}/>
-        <Route path="/ViewStock" element={<ViewStock/>}/>
-    
-        
+        <Route path="/Login" element={<Logout />} />
+        <Route path="/Stock" element={<Stock />} />
+        <Route path="/MainSales" element={<MainSales />} />
+        {/* <Route path="/Sales" element={<Sales/>}/> */}
+
+        <Route path="/MainStock" element={<MainStock />} />
+        <Route path="/ViewStock" element={<ViewStock />} />
       </Routes>
     </div>
   );

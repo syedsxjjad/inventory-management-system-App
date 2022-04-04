@@ -21,7 +21,6 @@ const ModalProduct = ({ id }: ViewProductProps) => {
   const { productView, setProductView } = useContext(UserContext);
 
   const [addProducts, setAddProducts] = useState({
-
     name: "",
     Price: "",
     Description: "",
@@ -41,7 +40,6 @@ const ModalProduct = ({ id }: ViewProductProps) => {
       const washingtonRef = doc(db, "Inventory-Management", `${id}`);
       setLoading(false);
       await updateDoc(washingtonRef, {
-    
         name: addProducts.name,
         Price: addProducts.Price,
         Description: addProducts.Description,
@@ -49,7 +47,7 @@ const ModalProduct = ({ id }: ViewProductProps) => {
       });
 
       toast.success("Update Successfully");
-    setShowModal(false)
+      setShowModal(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -89,21 +87,6 @@ const ModalProduct = ({ id }: ViewProductProps) => {
                 <div className="relative p-6 flex-auto">
                   <form className="bg-slate-200  shadow-md rounded mr-24  pt-6 pb-8 w-full">
                     <div className="w-auto px-56">
-                      {/* <div className="">
-                        <div
-                          className="text-sm font-bold mr-52 text-black
-                               tracking-wide mt-6"
-                        >
-                          ProductId
-                        </div>
-                        <Input
-                          type={"Number"}
-                          placeholder={"Product Id"}
-                          value={addProducts.ProductId}
-                          onChange={handleChange("ProductId")}
-                        />
-                      </div> */}
-
                       <div className="">
                         <div
                           className="  mr-52 text-sm font-bold text-black
@@ -160,7 +143,7 @@ const ModalProduct = ({ id }: ViewProductProps) => {
                         {!loading ? (
                           <Button
                             style="bg-red-800 "
-                            title={"btn"}
+                            title={"Update"}
                             onClick={UpdatePrducts}
                           />
                         ) : (

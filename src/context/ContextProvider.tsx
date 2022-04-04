@@ -6,11 +6,17 @@ import { collection, onSnapshot } from "firebase/firestore";
 
 export const UsersData: React.FC = (props): React.ReactElement => {
   const [productView, setProductView] = React.useState([]);
-  const [quantity, setQuantity] = React.useState();
+  const [stockQuantity, setStockQuantity] = React.useState();
+  const [saleQuantity, SetSaleQuantity] = React.useState();
   const [storeName, setStoreName] = React.useState();
-  const [product, setProduct] = React.useState();
+  const [stockProduct, setStockProduct] = React.useState();
   const [viewStock, setViewStock] = React.useState();
   const [token, setToken] = React.useState<string | null>("");
+  const [totalSales, setTotalSales] = React.useState(0);
+  const [saleDate, setSaleDate] = React.useState();
+  const [saleStoreName, setSaleStoreName] = React.useState();
+  const [viewSales, setViewSales] = React.useState();
+  const [salesProduct, setSalesProduct] = React.useState();
 
   // console.log("productView", productView)
   useEffect(() => {
@@ -33,6 +39,23 @@ export const UsersData: React.FC = (props): React.ReactElement => {
       (snapshoot: any) => {
         setViewStock(
           snapshoot.docs.map((doc: any) => {
+            console.log("docs", doc);
+            return {
+              ...doc.data(),
+              id: doc.id,
+            };
+          })
+        );
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    onSnapshot(
+      collection(db, "Inventory-Management-Sales"),
+      (snapshoot: any) => {
+        setViewSales(
+          snapshoot.docs.map((doc: any) => {
             // console.log(doc);
             return {
               ...doc.data(),
@@ -50,18 +73,30 @@ export const UsersData: React.FC = (props): React.ReactElement => {
   //     setToken(getToken);
   //   }, []);
   const userDetails = {
+    totalSales,
     token,
     storeName,
     viewStock,
     productView,
-    product,
-    quantity,
+    stockProduct,
+    stockQuantity,
+    saleQuantity,
+    saleDate,
+    saleStoreName,
+    viewSales,
+    salesProduct,
+    setSalesProduct,
+    setViewSales,
+    setSaleStoreName,
+    setSaleDate,
+    SetSaleQuantity,
     setToken,
     setStoreName,
     setViewStock,
     setProductView,
-    setProduct,
-    setQuantity,
+    setStockProduct,
+    setStockQuantity,
+    setTotalSales,
   };
   return (
     <UserContext.Provider value={userDetails}>

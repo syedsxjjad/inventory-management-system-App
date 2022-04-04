@@ -4,7 +4,7 @@ import { UserContext } from "../../context/Context";
 
 const AdminPanel = () => {
   const { productView, setProductView } = useContext(UserContext);
-  const { viewStock, setViewStock } = useContext(UserContext);
+  // const { viewStock, setViewStock } = useContext(UserContext);
 
   // console.log(productView);
 
@@ -34,7 +34,22 @@ const AdminPanel = () => {
           >
             <br />
             <label className=" text-white font text-2xl ml-24 font-sans">
-             Total Stock
+              Total Stock
+            </label>
+            <br />
+            <span className=" text-white  font text-2xl px-36  ">
+              {/* {viewStock.length} */}
+            </span>
+          </div>
+        </Link>
+        <Link to="/Sales">
+          <div
+            className="w-96 h-40 rounded-md  bg-slate-900 shadow-xl
+                max-w-xs hover:scale-110 transition duration-300 ease-in-out"
+          >
+            <br />
+            <label className=" text-white font text-2xl ml-24 font-sans">
+              Total Sales
             </label>
             <br />
             <span className=" text-white  font text-2xl px-36  ">

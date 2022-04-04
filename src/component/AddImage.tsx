@@ -22,7 +22,7 @@ export default function AddImage({ handleImageUrl }: AddImageProps) {
   const uploadImage = async (e: any) => {
     e.preventDefault();
     //  console.log(file);
-    setLoading(true)
+    setLoading(true);
 
     const files = e.target.files;
     const data = new FormData();
@@ -43,11 +43,10 @@ export default function AddImage({ handleImageUrl }: AddImageProps) {
       console.log(responseJson);
 
       handleImageUrl(responseJson.url);
-      setLoading(false)
+      setLoading(false);
       e.target.file = null;
     }
   };
-  
 
   const Imagehandler = (e: any) => {
     const pic = e.target.files[0];
@@ -92,18 +91,15 @@ export default function AddImage({ handleImageUrl }: AddImageProps) {
           multiple
           onChange={Imagehandler}
         />
-         {!loading?(
-           
-
-             <Button title={"Upload"}onClick={uploadImage} style={"w-auto h-auto "} />
-            
-           ):(
-             <Loading/>
-            
-           )
-           
-           
-         }
+        {!loading ? (
+          <Button
+            title={"Upload"}
+            onClick={uploadImage}
+            style={"w-20 h-auto "}
+          />
+        ) : (
+          <Loading />
+        )}
 
         {/* <div>
         <label className="selpic" htmlFor="f02">
@@ -111,7 +107,7 @@ export default function AddImage({ handleImageUrl }: AddImageProps) {
         </label>
       </div> */}
       </div>
-       
+
       <ToastContainer
         position="top-right"
         autoClose={2000}

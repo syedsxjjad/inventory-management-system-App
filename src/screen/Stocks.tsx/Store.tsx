@@ -8,20 +8,19 @@ const Store = () => {
     { id: 3, name: "Chase" },
   ];
 
-  const {storeName, setStoreName} = useContext(UserContext);
+  const { storeName, setStoreName } = useContext(UserContext);
 
   // console.log(storeName,"storename");
-  
 
   return (
-    <div className="w-72 h-32 " >
+    <div className="w-72 h-32 ">
       <div>
         <select
           className="w-56 h-12 bg-slate-800 text-white rounded-lg"
-          onChange={((e:any)=>{
-            setStoreName(e.target.value)
-          })}
-         >
+          onChange={(e: any) => {
+            setStoreName(e.target.value);
+          }}
+        >
           {status.map((data: any, index: any) => (
             <option key={index}>{data.name}</option>
           ))}

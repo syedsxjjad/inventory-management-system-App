@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
   const [loading, setLoading] = useState(false);
   const [addProducts, setAddProducts] = useState({
-  
     name: "",
     Price: "",
     Description: "",
@@ -22,7 +21,7 @@ const AddProduct = () => {
     imageUrl: "",
   });
 
-  let navigate=useNavigate()
+  let navigate = useNavigate();
 
   const handleImageUrl = (imageUrl: string) => {
     setAddProducts((prev) => ({
@@ -42,7 +41,7 @@ const AddProduct = () => {
     e.preventDefault();
     setLoading(true);
 
-     if (addProducts.name === null || addProducts.name === "") {
+    if (addProducts.name === null || addProducts.name === "") {
       toast.error("Please Enter Name");
       setLoading(false);
     } else if (addProducts.Price === null || addProducts.Price === "") {
@@ -61,12 +60,15 @@ const AddProduct = () => {
       toast.error("Please Enter Image");
       setLoading(false);
     } else {
+      // if (addProducts.name === addProducts.name) {
+      // } else {
       try {
         const docRef = await addDoc(collection(db, "Inventory-Management"), {
           ...addProducts,
         });
         setLoading(false);
         console.log(docRef);
+
         setAddProducts({
           name: "",
           Price: "",
@@ -76,8 +78,7 @@ const AddProduct = () => {
         });
 
         toast.success("Create Successfully");
-        navigate("/Products")
-        
+        navigate("/Products");
       } catch (error) {
         setLoading(false);
         console.log(error);
@@ -91,21 +92,6 @@ const AddProduct = () => {
       <div className="w-2/3 h-auto mt-20 ml-96 ">
         <div className="w-5/6 ml-40  flex ">
           <form>
-            {/* <div className="">
-              <div
-                className=" w-1/2 mr-1 text-sm font-bold text-white
-                               tracking-wide mt-6"
-              >
-                Product Id
-              </div>
-              <Input
-                type={"Number"}
-                placeholder={"Product Id"}
-                value={addProducts.ProductId}
-                onChange={handleChange("ProductId")}
-              />
-            </div> */}
-
             <div className="">
               <div
                 className=" w-1/2 ml-1 text-sm font-bold text-white
@@ -157,7 +143,6 @@ const AddProduct = () => {
               />
             </div>
             <AddImage handleImageUrl={handleImageUrl} />
-            {/* <Etc/> */}
 
             <div className="mt-10">
               {!loading ? (
