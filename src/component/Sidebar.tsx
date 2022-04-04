@@ -9,7 +9,8 @@ function Sidebar() {
   // this.classList.add('active'))
   return (
     <div className="flex  fixed">
-      <div className="absolute  bg-slate-900 
+      <div
+        className="absolute  bg-slate-900 
                  text-white w-[82rem] h-12 ml-72  "
       >
         <span className="flex justify-center mr-36 text-white text-3xl ">
@@ -77,25 +78,25 @@ function Sidebar() {
                                focus:bg-white focus:text-black flex items- w-64 
                                 -ml-3 py-3 mt-6 text-white bg-slate-700 
                                hover:text-black rounded-l-lg  "
-                    to="/AddProduct"
+                    to="/MainStock"
                   >
-                    <span className="mx-4 font-medium">Sell</span>
+                    <span className="mx-4 font-medium">Stock</span>
                   </Link>
                 </li>
 
-                <li>     
+                <li>
                   <Link
                     className="hover:bg-white active:bg-white focus:outline-none 
                               focus:bg-white focus:text-black flex items- w-64 
                               -ml-3 py-3 mt-6 text-white bg-slate-700 
                              hover:text-black rounded-l-lg "
-                    to="#"
+                    to="/MainSales"
                   >
-                    <span className="mx-4 font-medium">History Sell</span>
+                    <span className="mx-4 font-medium">Sales</span>
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link
                     className="hover:bg-white active:bg-white focus:outline-none 
                                focus:bg-white focus:text-black flex items- w-64 
@@ -105,7 +106,7 @@ function Sidebar() {
                   >
                     <span className="mx-4 font-medium">Graph</span>
                   </Link>
-                </li>
+                </li> */}
 
                 {/* <li>
                   <Link
@@ -149,13 +150,13 @@ function Sidebar() {
                     className="flex items- w-64 -ml-3  py-3 mt-32 rounded-l-lg
                              text-white bg-slate-700 hover:bg-gray-200 
                               hover:text-black"
-                    to="/Login"
+                    to="/Logout"
                   >
                     <span className="mx-9 font-medium">Logout</span>
                   </Link>
                 </li>
-
-                {/* <li className='ml-8'>
+                {/* 
+                <li className='mt-60 ml-8'>
                 <Logout/>
               </li> */}
               </ul>
