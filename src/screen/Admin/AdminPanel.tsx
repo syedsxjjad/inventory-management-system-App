@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/Context";
+import ViewStock from "../Stocks.tsx/ViewStock";
 
 const AdminPanel = () => {
   const { productView, setProductView } = useContext(UserContext);
-  // const { viewStock, setViewStock } = useContext(UserContext);
+  const { viewStock, setViewStock } = useContext(UserContext);
+  const { viewSales, setViewSales } = useContext(UserContext);
 
   // console.log(productView);
 
@@ -38,7 +40,7 @@ const AdminPanel = () => {
             </label>
             <br />
             <span className=" text-white  font text-2xl px-36  ">
-              {/* {viewStock.length} */}
+              {viewStock.length}
             </span>
           </div>
         </Link>
@@ -53,7 +55,7 @@ const AdminPanel = () => {
             </label>
             <br />
             <span className=" text-white  font text-2xl px-36  ">
-              {/* {viewStock.length} */}
+              {viewSales.length}
             </span>
           </div>
         </Link>

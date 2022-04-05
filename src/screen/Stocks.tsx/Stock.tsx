@@ -11,16 +11,16 @@ import Loading from "../../component/Loading";
 
 interface ViewProductProps {
   id?: string;
+  StockValue?: string;
 }
 
-const Stock = ({ id }: ViewProductProps) => {
+const Stock = ({ id, StockValue }: ViewProductProps) => {
   const { stockQuantity, setStockQuantity } = useContext(UserContext);
   const { storeName, setStoreName } = useContext(UserContext);
   const { productView, setProductView } = useContext(UserContext);
   const { stockProduct, setStockProduct } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [findData, setFindData] = useState(null as any);
-
   // console.log(findData, "finddata");
   // console.log(product, "product");
 
@@ -33,6 +33,7 @@ const Stock = ({ id }: ViewProductProps) => {
   // }, [productView]);
   // console.log(product, "pro");
   // console.log(productView, "proView");
+  console.log(StockValue, "RefValue");
 
   useEffect(() => {
     productView?.forEach((val: any) => {
@@ -58,6 +59,7 @@ const Stock = ({ id }: ViewProductProps) => {
             stockQuantity,
             stockProduct,
             storeName,
+            name: StockValue,
           }
         );
         console.log(docRef);
