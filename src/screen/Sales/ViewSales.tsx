@@ -1,26 +1,22 @@
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
-import React, { useContext, useEffect } from "react";
+import { deleteDoc, doc } from "firebase/firestore";
+import React, { useContext } from "react";
 import Button from "../../component/Button";
-import Loading from "../../component/Loading";
 import { UserContext } from "../../context/Context";
 import { db } from "../../Firebase/Firebase";
 
-const ViewStock = () => {
-  const { viewStock, setViewStock } = useContext(UserContext);
-  console.log(viewStock, "ViewStock");
+const ViewSales = () => {
+  const { viewSales, setViewSales } = useContext(UserContext);
 
-  //Firebase Product Delete
-  const ProductDelete = async (id: string) => {
-    await deleteDoc(doc(db, "Inventory-Management-Stock", `${id}`));
+  const SalesDelete = async (id: string) => {
+    await deleteDoc(doc(db, "Inventory-Management-Sales", `${id}`));
   };
-  // console.log("viewStock", viewStock);
 
   return (
     <>
       {/* {viewStock.length ? ( */}
       {
-        viewStock?.map((stock: any, index: any) => {
-          // console.log("stock1", stock);
+        viewSales?.map((sales: any, index: any) => {
+          console.log(sales, "Salesss");
 
           return (
             <div key={index} className="w-9/12 h-auto bg-black mt-4">
@@ -29,13 +25,19 @@ const ViewStock = () => {
                   <thead className="text-xs w-full text-gray-700 uppercase bg-slate-200 dark:bg-slate-900 dark:text-gray-400">
                     <tr>
                       <th scope="col" className="px- py-3">
-                        Product Quantity
+                        Quantity
+                      </th>
+                      <th scope="col" className="px-16 py-3">
+                        Date
                       </th>
                       <th scope="col" className="px-  py-3">
                         Product Name
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="px- py-3">
                         Store Name
+                      </th>
+                      <th scope="col" className="px- py-3">
+                        Sales Price
                       </th>
 
                       <th scope="col" className="px-6 py-3">
@@ -46,9 +48,11 @@ const ViewStock = () => {
 
                   <tbody>
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                      <td className="px-12 py-4">{stock.stockQuantity}</td>
-                      <td className="px-6 py-4">{stock.stockProduct.name}</td>
-                      <td className="px-6 py-4">{stock.storeName}</td>
+                      <td className="px-6 py-4">{sales.saleQuantity}</td>
+                      <td className="px-12 py-4">{sales.saleDate}</td>
+                      <td className="px-6 py-4">{sales.salesProduct.name}</td>
+                      <td className="px-6 py-4">{sales.saleStoreName}</td>
+                      <td className="px-6 py-4">{sales.totalSales}</td>
                       <td className="px-0  py-4 text-right"></td>
 
                       <td className="px-3 py-4 text-right">
@@ -56,7 +60,7 @@ const ViewStock = () => {
                           style="bg-slate-600 w-auto text-black active:bg-blue-500 
                         font-bold px-6 py-3 rounded shadow  hover:shadow-lg hover:bg-red-700 outline-none focus:outline-none mr-1 mb-1"
                           title="Delete"
-                          onClick={() => ProductDelete(stock.id)}
+                          onClick={() => SalesDelete(sales.id)}
                         />
                       </td>
                     </tr>
@@ -74,4 +78,4 @@ const ViewStock = () => {
   );
 };
 
-export default ViewStock;
+export default ViewSales;

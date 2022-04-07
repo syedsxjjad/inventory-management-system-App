@@ -11,6 +11,7 @@ import Loading from "../../component/Loading";
 
 interface ViewProductProps {
   id?: string;
+  // StockValue?: string;
 }
 
 const Stock = ({ id }: ViewProductProps) => {
@@ -20,9 +21,7 @@ const Stock = ({ id }: ViewProductProps) => {
   const { stockProduct, setStockProduct } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [findData, setFindData] = useState(null as any);
-
   // console.log(findData, "finddata");
-  // console.log(product, "product");
 
   // console.log(productView,"Storename");
   // console.log(product,"Productname");
@@ -33,10 +32,13 @@ const Stock = ({ id }: ViewProductProps) => {
   // }, [productView]);
   // console.log(product, "pro");
   // console.log(productView, "proView");
+  // console.log(StockValue, "RefValue");
 
   useEffect(() => {
     productView?.forEach((val: any) => {
-      if (val.id === stockProduct) {
+      if (val.id === stockProduct.id) {
+        console.log(val, "val");
+
         setFindData(val);
       }
     });
@@ -44,7 +46,7 @@ const Stock = ({ id }: ViewProductProps) => {
 
   const AddStock = async (e: any) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
 
     if (Number(stockQuantity) > Number(findData?.quantity)) {
       alert("Quantity is not available");
@@ -58,13 +60,14 @@ const Stock = ({ id }: ViewProductProps) => {
             stockQuantity,
             stockProduct,
             storeName,
+            // name: StockValue,
           }
         );
         console.log(docRef);
         toast.success("Create Successfully");
         console.log({ productView });
         productView.forEach(async (v: any) => {
-          if (v.id === stockProduct) {
+          if (v.id === stockProduct.id) {
             console.log(v, "bbvv");
 
             v.quantity = v.quantity - stockQuantity;
@@ -85,7 +88,7 @@ const Stock = ({ id }: ViewProductProps) => {
     }
 
     setStockQuantity("");
-    setStockProduct("");
+    // setStockProduct({id : "", name : ""});
     setStoreName("");
   };
 

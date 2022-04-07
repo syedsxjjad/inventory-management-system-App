@@ -9,14 +9,17 @@ export const UsersData: React.FC = (props): React.ReactElement => {
   const [stockQuantity, setStockQuantity] = React.useState();
   const [saleQuantity, SetSaleQuantity] = React.useState();
   const [storeName, setStoreName] = React.useState();
-  const [stockProduct, setStockProduct] = React.useState();
+  const [stockProduct, setStockProduct] = React.useState({ id: "", name: "" });
   const [viewStock, setViewStock] = React.useState();
   const [token, setToken] = React.useState<string | null>("");
   const [totalSales, setTotalSales] = React.useState(0);
   const [saleDate, setSaleDate] = React.useState();
-  const [saleStoreName, setSaleStoreName] = React.useState();
+  const [saleStoreName, setSaleStoreName] = React.useState({
+    id: "",
+    name: "",
+  });
   const [viewSales, setViewSales] = React.useState();
-  const [salesProduct, setSalesProduct] = React.useState();
+  const [salesProduct, setSalesProduct] = React.useState({ id: "", name: "" });
 
   // console.log("productView", productView)
   useEffect(() => {
