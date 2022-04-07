@@ -9,6 +9,7 @@ const AdminPanel = () => {
   const { viewSales, setViewSales } = useContext(UserContext);
 
   // console.log(productView);
+  const logout = () => {};
 
   return (
     <>
@@ -40,7 +41,7 @@ const AdminPanel = () => {
             </label>
             <br />
             <span className=" text-white  font text-2xl px-36  ">
-              {viewStock.length}
+              {/* {viewStock.length} */}
             </span>
           </div>
         </Link>
@@ -55,7 +56,7 @@ const AdminPanel = () => {
             </label>
             <br />
             <span className=" text-white  font text-2xl px-36  ">
-              {viewSales.length}
+              {/* {viewSales.length} */}
             </span>
           </div>
         </Link>

@@ -13,10 +13,13 @@ const MainSales = () => {
   const { saleDate, setSaleDate } = useContext(UserContext);
   const { saleStoreName, setSaleStoreName } = useContext(UserContext);
 
-  const RefStore: any = useRef(0);
-  const RefProduct: any = useRef(0);
-  const SalesStoreRef = RefStore.current.label;
-  const SalesProducteRef = RefProduct.current.label;
+  // console.log(salesProduct, "salesProduct2");
+  console.log(saleStoreName, "");
+
+  // const RefStore: any = useRef(0);
+  // const RefProduct: any = useRef(0);
+  // const SalesStoreRef = RefStore.current.label;
+  // const SalesProducteRef = RefProduct.current.label;
   // console.log("SalesStoreRef", SalesStoreRef);
   // console.log("SalesProducteRef", SalesProducteRef);
 
@@ -28,8 +31,8 @@ const MainSales = () => {
   return (
     <>
       <div>
-        <div className="w-[70rem] ml-80 mt-12">
-          <div className="flex w-[78rem]   justify-around fixed bg-white py-8  ">
+        <div className="w-[70rem] ml-96 mt-12">
+          <div className="flex w-[70rem]   justify-around fixed bg-white py-8  ">
             <div>
               <Input
                 style="w-40 "
@@ -56,7 +59,12 @@ const MainSales = () => {
                 <select
                   className="w-52 h-12 bg-slate-800 text-white rounded-lg"
                   onChange={(e: any) => {
-                    setSalesProduct(e.target.value);
+                    setSalesProduct({
+                      id: e.target.value,
+                      name: viewStock?.find(
+                        (val: any) => val.id === e.target.value
+                      )?.stockProduct.name,
+                    });
                   }}
                 >
                   {viewStock?.map((Product: any, index: any) => {
@@ -66,10 +74,10 @@ const MainSales = () => {
                       <option
                         key={index}
                         value={Product.id}
-                        ref={RefProduct}
-                        label={Product.name}
+                        // ref={RefProduct}
+                        // label={Product.stockProduct.name}
                       >
-                        {Product.name}
+                        {Product.stockProduct.name}
                       </option>
                     );
                   })}
@@ -81,7 +89,12 @@ const MainSales = () => {
               <select
                 className="w-52 h-12 bg-slate-800 text-white rounded-lg"
                 onChange={(e: any) => {
-                  setSaleStoreName(e.target.value);
+                  setSaleStoreName({
+                    id: e.target.value,
+                    name: viewStock?.find(
+                      (val: any) => val.id === e.target.value
+                    )?.stockProduct.storeName,
+                  });
                 }}
               >
                 {viewStock?.map((Product: any, index: any) => {
@@ -91,7 +104,7 @@ const MainSales = () => {
                     <option
                       key={index}
                       value={Product.id}
-                      ref={RefStore}
+                      // ref={RefStore}
                       label={Product.storeName}
                     >
                       {Product.storeName}
@@ -101,18 +114,12 @@ const MainSales = () => {
               </select>
             </div>
             <div>
-              <h1 className="w-36 py-3 h-12 bg-slate-800 text-white rounded-lg">
-                Total Sales : {totalSales}
+              <h1 className="w-32 py-3 h-12 bg-slate-800 text-white rounded-lg">
+                <label className="px-2">Sales :</label>
+                {totalSales ? totalSales : 0}
               </h1>
             </div>
-            <div>
-              {
-                <Sales
-                  salesStoreValue={SalesStoreRef}
-                  salesProductValue={SalesProducteRef}
-                />
-              }
-            </div>
+            <div>{<Sales />}</div>
           </div>
         </div>
         <div className="w-[70rem] h-96  ml-96 mt-60">{<ViewSales />}</div>

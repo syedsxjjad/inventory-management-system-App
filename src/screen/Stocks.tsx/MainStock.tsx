@@ -13,11 +13,11 @@ const MainStock = () => {
   const { stockProduct, setStockProduct } = useContext(UserContext);
 
   // const [stockProduckName, setStockProduckName] = useState("");
-  const RefProduct: any = useRef(null);
+  // const RefProduct: any = useRef(null);
   // console.log(RefProduct, "ssdss");
-  console.log(stockProduct, "eeeee");
+  // console.log(productView, "eeeee");
 
-  // const ProductRef = RefProduct.current;
+  // const ProductRef = RefProduct.current.label;
   // console.log(ProductRef, "doc");
 
   // console.log("stockProduct", stockProduct);
@@ -52,7 +52,12 @@ const MainStock = () => {
                 <select
                   className="w-56 h-12 bg-slate-800 text-white rounded-lg"
                   onChange={(e: any) => {
-                    setStockProduct(e.target.value);
+                    setStockProduct({
+                      id: e.target.value,
+                      name: productView?.find(
+                        (val: any) => val.id === e.target.value
+                      )?.name,
+                    });
                   }}
                 >
                   {productView.map((stockProduct: any, index: any) => (
@@ -60,9 +65,8 @@ const MainStock = () => {
                       key={index}
                       // ref={RefProduct}
                       value={stockProduct.id}
-                      label={stockProduct.name}
+                      // label={stockProduct.name}
                     >
-                      {console.log(stockProduct.name, "hhhh")}
                       {stockProduct.name}
                     </option>
                   ))}
@@ -70,7 +74,7 @@ const MainStock = () => {
               </div>
             </div>
             <div>
-              <Stock StockValue={productView.name} />
+              <Stock />
             </div>
           </div>
         </div>

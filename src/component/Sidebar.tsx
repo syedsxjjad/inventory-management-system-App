@@ -1,12 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Logout from "../screen/Logout";
+import React, { useContext } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/Context";
 //import "../style/style.css"
 
 function Sidebar() {
   // const lists=document.querySelectorAll('list')
   // lists.forEach((item)=>
   // this.classList.add('active'))
+  const { token, setToken } = useContext(UserContext);
+
+  // let navigate=useNavigate();
+  //   const logout = () => {
+  //     localStorage.getItem("token");
+  //     window.localStorage.removeItem("token");
+  //     window.localStorage.clear();
+  //     navigate("/");
+
   return (
     <div className="flex  fixed">
       <div
@@ -146,14 +155,24 @@ function Sidebar() {
                 </li> */}
 
                 <li>
-                  <Link
+                  {/* <Logout /> */}
+                  {/* <Link
                     className="flex items- w-64 -ml-3  py-3 mt-32 rounded-l-lg
                              text-white bg-slate-700 hover:bg-gray-200 
                               hover:text-black"
-                    to="/Logout"
+                    to="onChange{}"
                   >
                     <span className="mx-9 font-medium">Logout</span>
-                  </Link>
+                  </Link> */}
+
+                  {/* <button
+                    onClick={logout}
+                    className="focus:outline-none flex bg-slate-700 py-2 px-12
+                    pt-3 rounded-md text-white hover:bg-slate-500 
+                   cursor-pointer "
+                  >
+                    <span className=" font-semibold">Logout</span>
+                  </button> */}
                 </li>
                 {/* 
                 <li className='mt-60 ml-8'>

@@ -10,11 +10,9 @@ import Button from "../../component/Button";
 
 interface ViewStockProps {
   id?: string;
-  salesStoreValue: string;
-  salesProductValue: string;
 }
 
-const Sales = ({ id, salesStoreValue, salesProductValue }: ViewStockProps) => {
+const Sales = ({ id }: ViewStockProps) => {
   const [loading, setLoading] = useState(false);
   const { salesProduct, setSalesProduct } = useContext(UserContext);
   const { totalSales, setTotalSales } = useContext(UserContext);
@@ -49,8 +47,6 @@ const Sales = ({ id, salesStoreValue, salesProductValue }: ViewStockProps) => {
             salesProduct,
             totalSales,
             saleDate,
-            SalesStoreName: salesStoreValue,
-            SalesProductName: salesProductValue,
           }
         );
         console.log(docRef);
@@ -88,7 +84,7 @@ const Sales = ({ id, salesStoreValue, salesProductValue }: ViewStockProps) => {
   return (
     <>
       {!loading ? (
-        <Button style="w-30 h-12  " title="Add Sale" onClick={AddSales} />
+        <Button style="w-30 h-12 py-3  " title="Add Sale" onClick={AddSales} />
       ) : (
         <Loading style="mt-62" />
       )}

@@ -6,7 +6,6 @@ import { db } from "../../Firebase/Firebase";
 
 const ViewSales = () => {
   const { viewSales, setViewSales } = useContext(UserContext);
-  //   console.log(viewSales, "sdd");
 
   const SalesDelete = async (id: string) => {
     await deleteDoc(doc(db, "Inventory-Management-Sales", `${id}`));
@@ -17,7 +16,7 @@ const ViewSales = () => {
       {/* {viewStock.length ? ( */}
       {
         viewSales?.map((sales: any, index: any) => {
-          console.log(sales, "Sales");
+          console.log(sales, "Salesss");
 
           return (
             <div key={index} className="w-9/12 h-auto bg-black mt-4">
@@ -51,8 +50,8 @@ const ViewSales = () => {
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
                       <td className="px-6 py-4">{sales.saleQuantity}</td>
                       <td className="px-12 py-4">{sales.saleDate}</td>
-                      <td className="px-6 py-4">{sales.SalesProductName}</td>
-                      <td className="px-6 py-4">{sales.SalesStoreName}</td>
+                      <td className="px-6 py-4">{sales.salesProduct.name}</td>
+                      <td className="px-6 py-4">{sales.saleStoreName}</td>
                       <td className="px-6 py-4">{sales.totalSales}</td>
                       <td className="px-0  py-4 text-right"></td>
 

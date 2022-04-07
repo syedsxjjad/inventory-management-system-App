@@ -7,7 +7,7 @@ import { db } from "../../Firebase/Firebase";
 
 const ViewStock = () => {
   const { viewStock, setViewStock } = useContext(UserContext);
-  // console.log(viewStock, "ViewStock");
+  console.log(viewStock, "ViewStock");
 
   //Firebase Product Delete
   const ProductDelete = async (id: string) => {
@@ -20,7 +20,7 @@ const ViewStock = () => {
       {/* {viewStock.length ? ( */}
       {
         viewStock?.map((stock: any, index: any) => {
-          // console.log("stock", stock);
+          // console.log("stock1", stock);
 
           return (
             <div key={index} className="w-9/12 h-auto bg-black mt-4">
@@ -47,7 +47,7 @@ const ViewStock = () => {
                   <tbody>
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
                       <td className="px-12 py-4">{stock.stockQuantity}</td>
-                      <td className="px-6 py-4">{stock.name}</td>
+                      <td className="px-6 py-4">{stock.stockProduct.name}</td>
                       <td className="px-6 py-4">{stock.storeName}</td>
                       <td className="px-0  py-4 text-right"></td>
 
