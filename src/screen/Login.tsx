@@ -11,12 +11,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../context/Context";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const { email, setEmail } = useContext(UserContext);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const { token, setToken } = useContext(UserContext);
   let navigate = useNavigate();
-  // console.log(token, "tokenq");
 
   const login = async (e: any) => {
     e.preventDefault();
@@ -54,9 +53,6 @@ const Login = () => {
       setPassword("");
     }
   };
-  window.localStorage.removeItem("token");
-  window.localStorage.clear();
-  navigate("/");
 
   return (
     <>
@@ -65,7 +61,7 @@ const Login = () => {
                       flex h-screen bg-slate-300 "
       >
         <div
-          className=" bg-white lg:mt-40 xl:max-h-96
+          className=" bg-white lg:mt-40 xl:max-h-96 rounded-md
                            xl:px-24 xl:max-w-xl shadow-xl "
         >
           <img className=" mt-3 w-14 h-14 ml-28" src="logo2.png"></img>
@@ -79,6 +75,7 @@ const Login = () => {
                   Email Address
                 </div>
                 <Input
+                  style="w-80"
                   type={"text"}
                   placeholder={"Enter Email"}
                   value={email}

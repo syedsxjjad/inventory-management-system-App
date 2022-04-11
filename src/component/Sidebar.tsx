@@ -1,20 +1,23 @@
 import React, { useContext } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/Context";
+import Button from "./Button";
+import { signOut } from "firebase/auth";
+// import Logout from "../screen/Logout";
 //import "../style/style.css"
 
 function Sidebar() {
-  // const lists=document.querySelectorAll('list')
-  // lists.forEach((item)=>
-  // this.classList.add('active'))
+  const { email, setEmail } = useContext(UserContext);
   const { token, setToken } = useContext(UserContext);
 
-  // let navigate=useNavigate();
-  //   const logout = () => {
-  //     localStorage.getItem("token");
-  //     window.localStorage.removeItem("token");
-  //     window.localStorage.clear();
-  //     navigate("/");
+  let navigate = useNavigate();
+  const logout = () => {
+    localStorage.getItem("token");
+    window.localStorage.removeItem("token");
+    window.localStorage.clear();
+    setToken(null);
+    navigate("/");
+  };
 
   return (
     <div className="flex  fixed">
@@ -34,7 +37,7 @@ function Sidebar() {
         >
           <img className=" ml-24 w-12 h-12 " src="logo2.png"></img>
           <span className="mx-5 mt-3 font-medium text-white">
-            UserEmail: Syed@gmail.com
+            UserEmail: syed@gmail.com
           </span>
           <hr className="w-52 mx-5" />
 
@@ -153,27 +156,26 @@ function Sidebar() {
                     <span className="mx-4 font-medium">Settings</span>
                   </Link>
                 </li> */}
-
                 <li>
-                  {/* <Logout /> */}
-                  {/* <Link
+                  <Button
+                    style="hover:bg-white active:bg-white focus:outline-none 
+                               focus:bg-white focus:text-black flex items- w-64 
+                                -ml-3 py-3  mt-36 text-white bg-slate-700 
+                               hover:text-black rounded-l-lg "
+                    title="Logout"
+                    onClick={logout}
+                  ></Button>
+                </li>
+                {/* <li>
+                  <Link
                     className="flex items- w-64 -ml-3  py-3 mt-32 rounded-l-lg
                              text-white bg-slate-700 hover:bg-gray-200 
                               hover:text-black"
-                    to="onChange{}"
+                    to=""
                   >
                     <span className="mx-9 font-medium">Logout</span>
-                  </Link> */}
-
-                  {/* <button
-                    onClick={logout}
-                    className="focus:outline-none flex bg-slate-700 py-2 px-12
-                    pt-3 rounded-md text-white hover:bg-slate-500 
-                   cursor-pointer "
-                  >
-                    <span className=" font-semibold">Logout</span>
-                  </button> */}
-                </li>
+                  </Link>
+                </li> */}
                 {/* 
                 <li className='mt-60 ml-8'>
                 <Logout/>
@@ -182,14 +184,6 @@ function Sidebar() {
             </aside>
           </div>
         </div>
-        {/*       
-      <div className="w-full h-full p-0 m-5 overflow-y-auto">
-          
-      <Header/>
-        <div className="flex items-center justify-center p-40 border-4 border-dotted">
-
-        </div>
-        </div> */}
       </div>
     </div>
   );

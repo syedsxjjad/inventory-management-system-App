@@ -16,7 +16,7 @@ const ViewSales = () => {
       {/* {viewStock.length ? ( */}
       {
         viewSales?.map((sales: any, index: any) => {
-          console.log(sales, "Salesss");
+          // console.log(sales, "Salesss");
 
           return (
             <div key={index} className="w-9/12 h-auto bg-black mt-4">
@@ -51,7 +51,7 @@ const ViewSales = () => {
                       <td className="px-6 py-4">{sales.saleQuantity}</td>
                       <td className="px-12 py-4">{sales.saleDate}</td>
                       <td className="px-6 py-4">{sales.salesProduct.name}</td>
-                      <td className="px-6 py-4">{sales.saleStoreName}</td>
+                      <td className="px-6 py-4">{sales.saleStoreName.name}</td>
                       <td className="px-6 py-4">{sales.totalSales}</td>
                       <td className="px-0  py-4 text-right"></td>
 

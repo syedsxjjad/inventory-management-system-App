@@ -7,7 +7,7 @@ import { db } from "../../Firebase/Firebase";
 
 const ViewStock = () => {
   const { viewStock, setViewStock } = useContext(UserContext);
-  console.log(viewStock, "ViewStock");
+  // console.log(viewStock, "ViewStock");
 
   //Firebase Product Delete
   const ProductDelete = async (id: string) => {
@@ -21,7 +21,7 @@ const ViewStock = () => {
       {
         viewStock?.map((stock: any, index: any) => {
           // console.log("stock1", stock);
-
+          // stock.sort("aced");
           return (
             <div key={index} className="w-9/12 h-auto bg-black mt-4">
               <div className="w-fit h-auto bg-slate-900 mt-5">

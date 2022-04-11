@@ -14,7 +14,7 @@ const MainSales = () => {
   const { saleStoreName, setSaleStoreName } = useContext(UserContext);
 
   // console.log(salesProduct, "salesProduct2");
-  console.log(saleStoreName, "");
+  // console.log(saleStoreName, "saleStoreName");
 
   // const RefStore: any = useRef(0);
   // const RefProduct: any = useRef(0);
@@ -68,7 +68,7 @@ const MainSales = () => {
                   }}
                 >
                   {viewStock?.map((Product: any, index: any) => {
-                    console.log(Product, "ViewStock");
+                    // console.log(Product, "ViewStock");
 
                     return (
                       <option
@@ -93,7 +93,7 @@ const MainSales = () => {
                     id: e.target.value,
                     name: viewStock?.find(
                       (val: any) => val.id === e.target.value
-                    )?.stockProduct.storeName,
+                    )?.storeName,
                   });
                 }}
               >

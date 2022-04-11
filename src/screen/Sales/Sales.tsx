@@ -21,10 +21,11 @@ const Sales = ({ id }: ViewStockProps) => {
   const { viewStock, setViewStock } = useContext(UserContext);
   const [findData, setFindData] = useState(null as any);
   const { saleQuantity, SetSaleQuantity } = useContext(UserContext);
+  // console.log(salesProduct.id, "kkkk");
 
   useEffect(() => {
     viewStock?.forEach((val: any) => {
-      if (val.id === salesProduct) {
+      if (val.id === salesProduct.id) {
         setFindData(val);
       }
     });
@@ -53,13 +54,8 @@ const Sales = ({ id }: ViewStockProps) => {
         toast.success("Create Successfully");
 
         viewStock.forEach(async (v: any) => {
-          // console.log("viewStock23", v);
-
-          if (v.id === salesProduct) {
-            // console.log(v, "vvv");
-
+          if (v.id === salesProduct.id) {
             v.stockQuantity = v.stockQuantity - saleQuantity;
-            // console.log(v.quantity, "sww");
 
             const washingtonRef = doc(
               db,
@@ -67,13 +63,13 @@ const Sales = ({ id }: ViewStockProps) => {
               `${v.id}`
             );
             await updateDoc(washingtonRef, {
-              saleQuantity: v.stockQuantity,
+              stockQuantity: v.stockQuantity,
             });
           }
         });
 
         setLoading(false);
-        console.log(docRef);
+        // console.log(docRef);
       } catch (error) {
         toast.error("Some Thing Wrong");
         console.log(error);

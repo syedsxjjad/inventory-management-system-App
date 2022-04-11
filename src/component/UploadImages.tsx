@@ -7,7 +7,8 @@ import Loading from "../component/Loading";
 interface AddImageProps {
   handleImageUrl: (url: string) => void;
 }
-const Etc = ({ handleImageUrl }: AddImageProps) => {
+
+function UploadImages({ handleImageUrl }: AddImageProps) {
   const [file, setFile] = useState<any>([]);
   const [isUpload, setIsUpload] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -74,14 +75,19 @@ const Etc = ({ handleImageUrl }: AddImageProps) => {
         <div className="" {...getRootProps()}>
           <input {...getInputProps()} />
 
-          {isDragActive ? "Drag Active" : "you can file here"}
+          {isDragActive ? (
+            "Drag Active"
+          ) : (
+            <div className="w-60 h-36 mt-3 py-12 px-14 font-bold ">
+              {/* <img className="w-9 h-11 " src="src\Asset\crimee.jpg"></img> */}
+              Image Upload
+            </div>
+          )}
         </div>
         {file.length > 0 && (
           <div className="relative">
-            <img className="w-60 h-36 -mt-6" src={file[0]}></img>
-            {/* {file.map((imag: any, ind: any) => (
-              <img className="w-60 h-36 -mt-6" src={imag} key={ind}></img>
-            ))} */}
+            <img className="w-60 h-36 -mt-36" src={file[0]}></img>
+
             <button
               type="button"
               onClick={delet}
@@ -103,6 +109,6 @@ const Etc = ({ handleImageUrl }: AddImageProps) => {
       {loading ? <Loading /> : null}
     </>
   );
-};
+}
 
-export default Etc;
+export default UploadImages;

@@ -7,19 +7,19 @@ import PublicRoutes from "./PublicRoutes";
 
 const MainRoutes = () => {
   // const [publicOrProtected, setPublicOrProtected] = useState(false);
-  // const [token, setToken] = useState(localStorage.getItem("token"));
+  // const [token, setToken] = useState(localStorage.getItem("token") || "");
+
   const { token, setToken } = useContext(UserContext);
 
-  setToken(localStorage.getItem("token"));
-  console.log(token, "Token");
-
+  setToken(localStorage.getItem("token") || "");
+  // console.log(token, "Token");
   // console.log("tokne", token)
   // let token = true;
 
   // let token: any = localStorage.getItem("token");
 
   // useEffect(() => {
-  //   console.log("token", token);
+  //   // console.log("token", token)
   //   if (token?.length) {
   //     setPublicOrProtected(true);
   //   } else {
@@ -29,6 +29,8 @@ const MainRoutes = () => {
 
   return (
     <>
+      {/* {token.length? <ProtectedRoutes />:  <PublicRoutes />} */}
+
       <Routes>
         {token?.length ? (
           <Route path="*" element={<ProtectedRoutes />} />

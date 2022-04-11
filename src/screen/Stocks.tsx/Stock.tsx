@@ -65,10 +65,11 @@ const Stock = ({ id }: ViewProductProps) => {
         );
         console.log(docRef);
         toast.success("Create Successfully");
+        setStockQuantity("");
         console.log({ productView });
         productView.forEach(async (v: any) => {
           if (v.id === stockProduct.id) {
-            console.log(v, "bbvv");
+            // console.log(v, "bbvv");
 
             v.quantity = v.quantity - stockQuantity;
 
@@ -79,6 +80,9 @@ const Stock = ({ id }: ViewProductProps) => {
           }
         });
         setLoading(false);
+        setStockQuantity("");
+        // setStockProduct({id : "", name : ""});
+        setStoreName("");
         // console.log(docRef);
       } catch (error) {
         toast.error("Some Thing Wrong");

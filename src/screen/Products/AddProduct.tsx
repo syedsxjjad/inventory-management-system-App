@@ -10,6 +10,10 @@ import TextArea from "../../component/TextArea";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import Etc from "../Etc";
+import UploadImages from "../../component/UploadImages";
+// import UploadImages from "../../component/UploadImages";
+// import DropImage from "../../component/DropImage";
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(false);
@@ -60,8 +64,6 @@ const AddProduct = () => {
       toast.error("Please Enter Image");
       setLoading(false);
     } else {
-      // if (addProducts.name === addProducts.name) {
-      // } else {
       try {
         const docRef = await addDoc(collection(db, "Inventory-Management"), {
           ...addProducts,
@@ -142,7 +144,8 @@ const AddProduct = () => {
                 onChange={handleChange("Description")}
               />
             </div>
-            <AddImage handleImageUrl={handleImageUrl} />
+
+            <UploadImages handleImageUrl={handleImageUrl} />
 
             <div className="mt-10">
               {!loading ? (
