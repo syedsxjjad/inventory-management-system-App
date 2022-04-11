@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../component/Input";
 import Button from "../component/Button";
 import { auth } from "../Firebase/Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import AdminDashboard from "./Admin/AdminDashboard";
-import Logout from "./Logout";
 import Loading from "../component/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../context/Context";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const { email, setEmail } = useContext(UserContext);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { token, setToken } = useContext(UserContext);
   let navigate = useNavigate();
 
   const login = async (e: any) => {
@@ -26,9 +27,7 @@ const Login = () => {
     } else if (password == null || password == "") {
       toast.error("Please Enter Password");
       setLoading(false);
-    }
-    
-    else {
+    } else {
       try {
         const response: any = await signInWithEmailAndPassword(
           auth,
@@ -37,13 +36,15 @@ const Login = () => {
         );
         // console.log(response.user.accessToken);
         setLoading(false);
-        localStorage.setItem(
-          "token",
-          JSON.stringify(response.user.accessToken)
+        setToken(
+          localStorage.setItem(
+            "token",
+            JSON.stringify(response.user.accessToken)
+          )
         );
 
-        navigate("/AdminDashboard");
         toast.success("Login Successfully");
+        navigate("/AdminDashboard");
       } catch (error) {
         setLoading(false);
         toast.error("Email And Password InCorrect");
@@ -60,11 +61,11 @@ const Login = () => {
                       flex h-screen bg-slate-300 "
       >
         <div
-          className=" bg-white lg:mt-40 xl:max-h-96
+          className=" bg-white lg:mt-40 xl:max-h-96 rounded-md
                            xl:px-24 xl:max-w-xl shadow-xl "
         >
           <img className=" mt-3 w-14 h-14 ml-28" src="logo2.png"></img>
-                    <div className="mt-8">
+          <div className="mt-8">
             <form>
               <div>
                 <div
@@ -74,6 +75,7 @@ const Login = () => {
                   Email Address
                 </div>
                 <Input
+                  style="w-80"
                   type={"text"}
                   placeholder={"Enter Email"}
                   value={email}
@@ -90,8 +92,6 @@ const Login = () => {
                   >
                     Password
                   </div>
-                 
-
                 </div>
                 <Input
                   type={"password"}
@@ -104,29 +104,30 @@ const Login = () => {
               </div>
               <div className="mt-10">
                 {!loading ? (
-                  <Button
-                    title={"Login"}
-                    onClick={login}
-                    style=""
-                  />
+                  <Button title={"Login"} onClick={login} style="" />
                 ) : (
                   <Loading />
                 )}
               </div>
             </form>
 
-            <div className="mt-12 ml-3 text-sm 
-            font-display font-semibold text-gray-700 text-center">
-            Don't have an account ?{" "}
-            <Link to='/Signup' className="cursor-pointer 
-            text-indigo-600 hover:text-indigo-800">
-              Sign up
-            </Link>
-          </div>
+            <div
+              className="mt-12 ml-3 text-sm 
+            font-display font-semibold text-gray-700 text-center"
+            >
+              Don't have an account ?{" "}
+              <Link
+                to="/Signup"
+                className="cursor-pointer 
+            text-indigo-600 hover:text-indigo-800"
+              >
+                Sign up
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-      
+
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -138,7 +139,6 @@ const Login = () => {
         draggable
         pauseOnHover
       />
-
     </>
   );
 };

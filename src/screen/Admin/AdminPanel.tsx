@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/Context";
+import ViewStock from "../Stocks.tsx/ViewStock";
 
 const AdminPanel = () => {
   const { productView, setProductView } = useContext(UserContext);
-  // const { viewStock, setViewStock } = useContext(UserContext);
+  const { viewStock, setViewStock } = useContext(UserContext);
+  const { viewSales, setViewSales } = useContext(UserContext);
 
   // console.log(productView);
 
@@ -27,7 +29,7 @@ const AdminPanel = () => {
             </span>
           </div>
         </Link>
-        <Link to="/Stock">
+        <Link to="/MainStock">
           <div
             className="w-96 h-40 rounded-md  bg-slate-900 shadow-xl
                 max-w-xs hover:scale-110 transition duration-300 ease-in-out"
@@ -38,11 +40,11 @@ const AdminPanel = () => {
             </label>
             <br />
             <span className=" text-white  font text-2xl px-36  ">
-              {/* {viewStock.length} */}
+              {viewStock?.length}
             </span>
           </div>
         </Link>
-        <Link to="/Sales">
+        <Link to="/MainSales">
           <div
             className="w-96 h-40 rounded-md  bg-slate-900 shadow-xl
                 max-w-xs hover:scale-110 transition duration-300 ease-in-out"
@@ -53,7 +55,7 @@ const AdminPanel = () => {
             </label>
             <br />
             <span className=" text-white  font text-2xl px-36  ">
-              {/* {viewStock.length} */}
+              {viewSales?.length}
             </span>
           </div>
         </Link>

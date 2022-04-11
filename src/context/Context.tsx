@@ -13,21 +13,25 @@ export interface AppContext {
   saleDate: any;
   saleStoreName: any;
   viewSales: any;
+  email: any;
   setViewSales: (viewSales: any) => void;
-  setSaleStoreName: (saleStoreName: any) => void;
+  setSaleStoreName: ({ id, name }: { id: string; name: string }) => void;
   setSaleDate: (saleDat: any) => void;
+  setEmail: (email: any) => void;
   SetSaleQuantity: (saleQuantity: any) => void;
   setProductView: (productView: any) => void;
   setStockQuantity: (quantity: any) => void;
-  setStockProduct: (product: any) => void;
+  setStockProduct: ({ id, name }: { id: string; name: string }) => void;
   setStoreName: (storeName: any) => void;
   setViewStock: (viewStock: any) => void;
   setToken: (token: any) => void;
   setTotalSales: (totaSales: any) => void;
-  setSalesProduct: (salesProduct: any) => void;
+  setSalesProduct: ({ id, name }: { id: string; name: string }) => void;
 }
 
 export const UserContext = createContext<AppContext>({
+  email: "",
+  setEmail: () => {},
   salesProduct: "",
   setSalesProduct: () => {},
   viewSales: "",
